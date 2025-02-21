@@ -26,6 +26,8 @@ services:
     depends_on:
       postgres_user: # postgres_db에 의존
         condition: service_healthy # db가 건강할 때 만
+    env_file:
+      - ./apps/user/.env
     ports:
       - '3001:3000' # 3001: 현재 내 로컬, 3000은 docker내의 포트
     volumes:

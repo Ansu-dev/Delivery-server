@@ -1,0 +1,15 @@
+version: '3.4'
+
+services:
+  user:
+    build:
+      context: .
+      dockerfile: ./apps/user/Dockerfile
+      target: development # 왜 사용할수 없는지?
+    command: npm run start:dev user
+    ports:
+      - '3001:3000' # 3001: 현재 내 로컬, 3000은 docker내의 포트
+    volumes:
+      - .:/usr/src/app # 원하는 위치 동기화 -> 자동으로 재시작이 불가
+      - /usr/src/app/node_modules # node_modules는 동기화 하지 않음
+
